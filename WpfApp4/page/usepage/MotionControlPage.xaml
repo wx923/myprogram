@@ -1,0 +1,475 @@
+﻿<Page x:Class="WpfApp4.page.usepage.MotionControlPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp4.page.usepage"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="850" d:DesignWidth="1000"
+      Title="Page1">
+    
+    <Page.Resources>
+        <!-- 定义框架边框样式 -->
+        <Style x:Key="BorderStyle1" TargetType="Border">
+            <Setter Property="BorderBrush" Value="LightGray"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
+        <!-- 定义边框样式2 -->
+        <Style x:Key="BorderStyle2" TargetType="Border">
+            <Setter Property="BorderBrush" Value="DarkGray"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+
+        <!-- 定义边框样式3 -->
+        <Style x:Key="BorderStyle3" TargetType="Border">
+            <Setter Property="BorderBrush" Value="Blue"/>
+            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="CornerRadius" Value="15"/>
+            <Setter Property="Margin" Value="15"/>
+        </Style>
+
+        <!-- 定义顶部导航栏样式 -->
+        <Style x:Key="TopNavBarStyle" TargetType="Border">
+            <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}"/>
+            <Setter Property="BorderBrush" Value="LightGray"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
+        <!-- 定义按钮样式 -->
+        <Style x:Key="TopNavigationButtonStyle" TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="BorderBrush" Value="LightGray"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource MaterialDesignSelection}"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource MaterialDesignSelection}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+        <!-- 定义选中按钮样式 -->
+        <Style x:Key="SelectedButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{DynamicResource MaterialDesignSelection}"/>
+            <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- 左侧导航栏按钮样式 -->
+        <Style x:Key="LeftNavigationButtonStyle" TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
+            <Setter Property="Margin" Value="8"/>
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <!-- 定义字体样式 -->
+        <Style x:Key="StatusTextStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="0 4"/>
+        </Style>
+
+        <!--文本间隔样式-->
+        <Style x:Key="TextMargin" TargetType="TextBlock">
+            <Setter Property="Margin" Value="3"></Setter>
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="180" ></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <!--上半部分-->
+        <Grid Grid.Row="0"  Margin="10,5,10,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="110" ></ColumnDefinition>
+                <ColumnDefinition Width="110"></ColumnDefinition>
+                <ColumnDefinition Width="230"></ColumnDefinition>
+                <ColumnDefinition Width="500"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <materialDesign:Card Grid.Column="0" Margin="1,1,1,1">
+                <StackPanel Orientation="Vertical"  VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <TextBlock Text="门锁1:" FontSize="12" FontWeight="Bold" Margin="0 0 0 1"/>
+                        <TextBlock Text="{Binding test}" FontSize="12" FontWeight="Bold" Margin="0 0 0 1"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <TextBlock Text="门锁2:" FontSize="12" FontWeight="Bold" Margin="0 0 0 1"/>
+                        <TextBlock Text="关" FontSize="12" FontWeight="Bold" Margin="0 0 0 1"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <TextBlock Text="炉门水平气缸:" FontSize="12" FontWeight="Bold" Margin="0 0 0 1"/>
+                        <TextBlock Text="关" FontSize="12" FontWeight="Bold" Margin="0 0 0 1"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="3">
+                        <TextBlock Text="炉门垂直气缸:" FontSize="12" FontWeight="Bold" Margin="0 0 0 1"/>
+                        <TextBlock Text="关" FontSize="12" FontWeight="Bold" Margin="0 0 0 1"/>
+                    </StackPanel>
+                </StackPanel>
+            </materialDesign:Card>
+            <materialDesign:Card Grid.Column="1"  Padding="2" Margin="4,0,4,0">
+                <StackPanel Orientation="Vertical" Margin="0,10,0,0">
+                    <materialDesign:Card Background="Green" Width="80" Height="35" Margin="0,0,0,5" >
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="小车区" VerticalAlignment="Center" HorizontalAlignment="Center" Height="25" ></TextBlock>
+                            <Border Height="10" BorderBrush="Gray" BorderThickness="0,1,0,0" >
+                                <TextBlock Text="12312314" FontSize="7"  HorizontalAlignment="Center"></TextBlock>
+                            </Border>
+                        </StackPanel>
+                    </materialDesign:Card>
+                    <materialDesign:Card Background="Green" Width="80" Height="35" Margin="0,0,0,5">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="暂存区1" VerticalAlignment="Center" HorizontalAlignment="Center" Height="25"></TextBlock>
+                            <Border Height="10" BorderBrush="Gray" BorderThickness="0,1,0,0" >
+                                <TextBlock Text="12312314" FontSize="7"  HorizontalAlignment="Center"></TextBlock>
+                            </Border>
+                        </StackPanel>
+                    </materialDesign:Card>
+                    <materialDesign:Card Background="Green" Width="80" Height="35" Margin="0,0,0,5">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="暂存区2" VerticalAlignment="Center" HorizontalAlignment="Center" Height="25"></TextBlock>
+                            <Border Height="10" BorderBrush="Gray" BorderThickness="0,1,0,0" >
+                                <TextBlock Text="12312314" FontSize="7"  HorizontalAlignment="Center"></TextBlock>
+                            </Border>
+                        </StackPanel>
+                    </materialDesign:Card>
+                    <materialDesign:Card Background="Green" Width="80" Height="35" Margin="0,0,0,5">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="桨区" VerticalAlignment="Center" HorizontalAlignment="Center" Height="25"></TextBlock>
+                            <Border Height="10" BorderBrush="Gray" BorderThickness="0,1,0,0" >
+                                <TextBlock Text="12312314" FontSize="7"  HorizontalAlignment="Center"></TextBlock>
+                            </Border>
+                        </StackPanel>
+                    </materialDesign:Card>
+
+
+
+                </StackPanel>
+            </materialDesign:Card>
+            <materialDesign:Card Grid.Column="2" Margin="1,1,8,1" >
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <StackPanel Orientation="Vertical" Margin="5">
+                        <RadioButton Content="小车区" Margin="0,2,0,10"></RadioButton>
+                        <RadioButton Content="存储区1" Margin="0,2,0,10"></RadioButton>
+                        <RadioButton Content="存储区2" Margin="0,2,0,10"></RadioButton>
+                        <RadioButton Content="桨区" Margin="0,2,0,10"></RadioButton>
+                    </StackPanel>
+                    <StackPanel Width="60" Margin="2,2,2,5"  VerticalAlignment="Center">
+                        <Button Content="自动/手动" Margin="0,2,0,5"></Button>
+                        <Button Content="移动" Margin="0,2,0,5"></Button>
+                    </StackPanel>
+                    <StackPanel Margin="5">
+                        <RadioButton Content="小车区" Margin="0,2,0,10"></RadioButton>
+                        <RadioButton Content="存储区1" Margin="0,2,0,10"></RadioButton>
+                        <RadioButton Content="存储区2" Margin="0,2,0,10"></RadioButton>
+                        <RadioButton Content="桨区" Margin="0,2,0,10"></RadioButton>
+                    </StackPanel>
+                </StackPanel>
+            </materialDesign:Card>
+            <materialDesign:Card Grid.Column="3" Margin="4,1,8,1" Background="{DynamicResource PrimaryHueLightBrush}">
+                <StackPanel  Orientation="Vertical" >
+                    <TextBlock Text="机械手移动"></TextBlock>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical">
+                                <Button Content="移动水平一轴到前限位" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Width="150" Margin="0,0,6,3" FontSize="11"/>
+                                <Button Content="移动水平一轴到后限位" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Width="150" Margin="0,1,6,3" FontSize="11"/>
+                                <Button Content="移动水平二轴到前限位" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Width="150" Margin="0,1,6,3" FontSize="11"/>
+                                <Button Content="移动水平二轴到后限位" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Width="150" Margin="0,1,6,3"  FontSize="11"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical">
+                                <Button Content="移动垂直轴到上限位" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Width="150" Margin="0,0,6,3"  FontSize="11"/>
+                                <Button Content="移动垂直轴到下限位" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Width="150" Margin="0,1,6,3"  FontSize="11"/>
+                                <Button Content="移动垂直轴到原点" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Width="150" Margin="0,1,6,3" FontSize="11"/>
+                                <Button Content="移动水平一轴到原点" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Width="150" Margin="0,1,6,3"  FontSize="11"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical">
+                                <Button Content="移动水平二轴到原点" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Width="150" Margin="0,0,6,3"  FontSize="11"/>
+                                <Button Content="整体回原点" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Width="150" Margin="0,1,6,3"  FontSize="11"/>
+                                <Button Content="移动上舟" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Width="150" Margin="0,1,6,3" FontSize="11"/>
+                                <Button Content="移动出舟" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Width="150" Margin="0,1,6,3"  FontSize="11"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </materialDesign:Card>
+            <!--舟号设置区-->
+            <materialDesign:Card Grid.Column="4">
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="舟号设置区" Margin="5"> </TextBlock>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="区域:"  Margin="10" VerticalAlignment="Center"></TextBlock>
+                        <ComboBox Width="100" Margin="10">
+                            <ComboBoxItem>小车区</ComboBoxItem>
+                            <ComboBoxItem>暂存区1</ComboBoxItem>
+                            <ComboBoxItem>暂存区2</ComboBoxItem>
+                            <ComboBoxItem>桨区</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="舟号:" Margin="10" VerticalAlignment="Center"></TextBlock>
+                        <ComboBox Width="100" Margin="10">
+                            <ComboBoxItem>小车区</ComboBoxItem>
+                            <ComboBoxItem>暂存区1</ComboBoxItem>
+                            <ComboBoxItem>暂存区2</ComboBoxItem>
+                            <ComboBoxItem>桨区</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                    <Button Content="设置" Width="100" VerticalAlignment="Center"></Button>
+                </StackPanel>
+            </materialDesign:Card>
+        </Grid>
+        
+        <!--下半部分-->
+        <Grid  Grid.Row="1"  Margin="10,5,10,0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="380"></ColumnDefinition>
+                <ColumnDefinition Width="340"></ColumnDefinition>
+                <ColumnDefinition Width="250"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Vertical"  Grid.Column="0" Margin="5,10,10,10" >
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="机械手定位位置状态" Margin="5,5,5,5"></TextBlock>
+                    <materialDesign:Card >
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="水平轴前限位到位:" Margin="5"></TextBlock>
+                                    <TextBlock Text="水平轴后限位到位:" Margin="5"></TextBlock>
+                                    <TextBlock Text="水平轴原点到位:" Margin="5"></TextBlock>
+                                    <TextBlock Text="垂直轴上限位到位:" Margin="5"></TextBlock>
+                                    <TextBlock Text="垂直轴下限位到位:" Margin="5"></TextBlock>
+                                    <TextBlock Text="垂直轴原点到位:" Margin="5"></TextBlock>
+                                    <TextBlock Text="水平轴上限位位置数值:" Margin="5"></TextBlock>
+                                    <TextBlock Text="水平轴下限位位置数值:" Margin="5"></TextBlock>
+                                    <TextBlock Text="水平轴原点位置数值:" Margin="5"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="否" Margin="5"></TextBlock>
+                                    <TextBlock Text="否" Margin="5"></TextBlock>
+                                    <TextBlock Text="否" Margin="5"></TextBlock>
+                                    <TextBlock Text="否" Margin="5"></TextBlock>
+                                    <TextBlock Text="否" Margin="5"></TextBlock>
+                                    <TextBlock Text="否" Margin="5"></TextBlock>
+                                    <TextBlock Text="否" Margin="5"></TextBlock>
+                                    <TextBlock Text="否" Margin="5"></TextBlock>
+                                    <TextBlock Text="否" Margin="5"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="水平垂直轴上限位位置数值" Margin="5"></TextBlock>
+                                    <TextBlock Text="水平垂直轴下限位位置数值" Margin="5"></TextBlock>
+                                    <TextBlock Text="水平垂直轴原点位置数值" Margin="5"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="否" Margin="5"></TextBlock>
+                                    <TextBlock Text="否" Margin="5"></TextBlock>
+                                    <TextBlock Text="否" Margin="5"></TextBlock>
+
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </materialDesign:Card>
+                    <TextBlock Text="机械手移动位置状态" Margin="5,10,5,5"></TextBlock>
+                    <materialDesign:Card>
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                                    <TextBlock Text="水平一轴当前位置数值:" Style="{StaticResource TextMargin}" Margin="5"></TextBlock>
+                                    <TextBlock Text="水平二轴当前位置数值:"  Style="{StaticResource TextMargin}" Margin="5"></TextBlock>
+                                    <TextBlock Text="垂直轴当前位置数值:" Style="{StaticResource TextMargin}" Margin="5"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" >
+                                    <TextBlock Text="12345" Style="{StaticResource TextMargin}" Margin="5"></TextBlock>
+                                    <TextBlock Text="12314" Style="{StaticResource TextMargin}" Margin="5"></TextBlock>
+                                    <TextBlock Text="23423" Style="{StaticResource TextMargin}" Margin="5"></TextBlock>
+
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                                    <TextBlock Text="水平一轴当前速度数值" Style="{StaticResource TextMargin}" Margin="5"></TextBlock>
+                                    <TextBlock Text="水平二轴当前速度数值" Style="{StaticResource TextMargin}" Margin="5"></TextBlock>
+                                    <TextBlock Text="垂直轴当前速度数值" Style="{StaticResource TextMargin}" Margin="5"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                                    <TextBlock Text="1234" Style="{StaticResource TextMargin}" Margin="5"></TextBlock>
+                                    <TextBlock Text="1234" Style="{StaticResource TextMargin}" Margin="5"></TextBlock>
+                                    <TextBlock Text="1234" Style="{StaticResource TextMargin}" Margin="5"></TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </materialDesign:Card>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel  Grid.Column="1" Margin="5,5,5,5">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="桨定位位置状态" Margin="5,5,5,5"></TextBlock>
+                    <materialDesign:Card>
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="水平轴前限位到位" Margin="5"></TextBlock>
+                                    <TextBlock Text="水平轴后限位到位" Margin="5"></TextBlock>
+                                    <TextBlock Text="水平轴原点到位" Margin="5"></TextBlock>
+                                    <TextBlock Text="垂直轴上限位到位" Margin="5"></TextBlock>
+                                    <TextBlock Text="垂直轴下限位到位" Margin="5"></TextBlock>
+                                    <TextBlock Text="垂直轴原点到位" Margin="5"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="否" Margin="5"></TextBlock>
+                                    <TextBlock Text="否" Margin="5"></TextBlock>
+                                    <TextBlock Text="否" Margin="5"></TextBlock>
+                                    <TextBlock Text="否" Margin="5"></TextBlock>
+                                    <TextBlock Text="否" Margin="5"></TextBlock>
+                                    <TextBlock Text="否" Margin="5"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" Margin="5">
+                                    <TextBlock Text="水平轴上限位位置数值" Margin="5"></TextBlock>
+                                    <TextBlock Text="水平轴下限位位置数值" Margin="5"></TextBlock>
+                                    <TextBlock Text="水平轴原点位置数值" Margin="5"></TextBlock>
+                                    <TextBlock Text="水平垂直轴上限位位置数值" Margin="5"></TextBlock>
+                                    <TextBlock Text="水平垂直轴下限位位置数值" Margin="5"></TextBlock>
+                                    <TextBlock Text="水平垂直轴原点位置数值" Margin="5"> </TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="否" Margin="5"></TextBlock>
+                                    <TextBlock Text="否" Margin="5"></TextBlock>
+                                    <TextBlock Text="否" Margin="5"></TextBlock>
+                                    <TextBlock Text="否" Margin="5"></TextBlock>
+                                    <TextBlock Text="否" Margin="5"></TextBlock>
+                                    <TextBlock Text="否" Margin="5"></TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </materialDesign:Card>
+                    <TextBlock Text="桨移动位置状态" Margin="5,8,5,8"></TextBlock>
+                    <materialDesign:Card>
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="水平轴当前位置数值" Margin="5"></TextBlock>
+                                    <TextBlock Text="垂直轴当前位置数值" Margin="5"></TextBlock>
+                                    <TextBlock Text="水平轴当前速度数值" Margin="5"></TextBlock>
+                                    <TextBlock Text="垂直轴当前速度数值" Margin="5"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="1234" Margin="5"></TextBlock>
+                                    <TextBlock Text="1234" Margin="5"></TextBlock>
+                                    <TextBlock Text="1234" Margin="5"></TextBlock>
+                                    <TextBlock Text="1234" Margin="5"></TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </materialDesign:Card>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Grid.Column="2" Margin="3,3,10,3">
+                <TextBlock Text="机械手精确控制" Margin="5,5,5,5"></TextBlock>
+                <materialDesign:Card>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Vertical" Margin="3">
+                                <TextBlock Text="轴选择"></TextBlock>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox Content="水平一轴"></CheckBox>
+                                    <CheckBox Content="水平二轴"></CheckBox>
+                                    <CheckBox Content="垂直轴"></CheckBox>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="5">
+                                <Button Content="速度模式" Margin="2,2,30,2"></Button>
+                                <Button Content="位置模式"></Button>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="5">
+                                <TextBlock Text="速度值"></TextBlock>
+                                <TextBox Width="60" Height="30"></TextBox>
+                            </StackPanel>
+                            <Button Style="{StaticResource MaterialDesignFlatMidBgButton}" Content="启动" Margin="5"></Button>
+                        </StackPanel>
+                    </StackPanel>
+                </materialDesign:Card>
+                <StackPanel Orientation="Vertical" Margin="0,3,0,3">
+                    <TextBlock Text="桨精确控制" Margin="3"></TextBlock>
+                    <materialDesign:Card>
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="轴选择"></TextBlock>
+                                <StackPanel Orientation="Horizontal" Margin="4">
+                                    <CheckBox Content="水平轴" Margin="0,0,30,0"></CheckBox>
+                                    <CheckBox Content="垂直轴"></CheckBox>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="速度模式" Margin="0,0,40,0"></Button>
+                                <Button Content="位置模式"></Button>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                <TextBlock Text="速度值："></TextBlock>
+                                <TextBox Width="60" Height="30"></TextBox>
+                            </StackPanel>
+                            <Button Style="{StaticResource MaterialDesignFlatMidBgButton}" Content="启动" Margin="5"></Button>
+                        </StackPanel>
+                    </materialDesign:Card>
+
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Grid.Column="3">
+                <TextBlock Text="桨定点移动"></TextBlock>
+                <materialDesign:Card>
+                <StackPanel Orientation="Vertical">
+                     <Button Content="水平轴到前限位" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Width="150"  Margin="5"/>
+                    <Button Content="水平轴到前限位" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Width="150"  Margin="5"/>
+                    <Button Content="水平轴到前限位" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Width="150"  Margin="5"/>
+                    <Button Content="水平轴到前限位" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Width="150"  Margin="5"/>
+                    <Button Content="水平一轴到前限位" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Width="150"  Margin="5"/>
+                    <Button Content="水平一轴到前限位" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Width="150"  Margin="5"/>
+                    <Button Content="水平一轴到前限位" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Width="150"  Margin="5"/>
+                    <Button Content="水平一轴到前限位" Style="{StaticResource MaterialDesignFlatDarkBgButton}" Width="150"  Margin="5"/>
+                </StackPanel>
+                </materialDesign:Card>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>
